@@ -2,7 +2,7 @@
 
 using System.Runtime.Serialization;
 
-namespace AlaskaX.Dmytro.Octo_Travel.DTOs.Products
+namespace AlaskaX.Dmytro.Adapter.Octo_Travel.DTOs.Products
 {
     [Serializable]
     [DataContract]
@@ -10,7 +10,7 @@ namespace AlaskaX.Dmytro.Octo_Travel.DTOs.Products
     {
         [DataMember]
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public Guid Id { get; set; }
 
         [DataMember]
         [JsonProperty("internalName")]
@@ -50,11 +50,11 @@ namespace AlaskaX.Dmytro.Octo_Travel.DTOs.Products
 
         [DataMember]
         [JsonProperty("deliveryFormats")]
-        public List<string> DeliveryFormats { get; set; }
+        public List<string> DeliveryFormats { get; set; } = [];
 
         [DataMember]
         [JsonProperty("deliveryMethods")]
-        public List<string> DeliveryMethods { get; set; }
+        public List<string> DeliveryMethods { get; set; } = [];
 
         [DataMember]
         [JsonProperty("redemptionMethod")]
@@ -62,6 +62,6 @@ namespace AlaskaX.Dmytro.Octo_Travel.DTOs.Products
 
         [DataMember]
         [JsonProperty("options")]
-        public List<DTOOption> Options { get; set; }
+        public List<DTOOption> Options { get; set; } = [];
     }
 }

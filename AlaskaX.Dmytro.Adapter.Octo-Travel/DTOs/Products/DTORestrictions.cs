@@ -2,7 +2,7 @@
 
 using System.Runtime.Serialization;
 
-namespace AlaskaX.Dmytro.Octo_Travel.DTOs.Products
+namespace AlaskaX.Dmytro.Adapter.Octo_Travel.DTOs.Products
 {
     [Serializable]
     [DataContract]
@@ -42,6 +42,6 @@ namespace AlaskaX.Dmytro.Octo_Travel.DTOs.Products
 
         [DataMember]
         [JsonProperty("accompaniedBy")]
-        public List<string> AccompaniedBy { get; set; }
+        public List<string> AccompaniedBy { get; set; } = [];
     }
 }

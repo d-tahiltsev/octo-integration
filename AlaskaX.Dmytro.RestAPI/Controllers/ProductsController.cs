@@ -1,5 +1,5 @@
-using AlaskaX.Dmytro.Octo_Travel;
-using AlaskaX.Dmytro.Octo_Travel.DTOs.Products;
+using AlaskaX.Dmytro.Adapter.Octo_Travel;
+using AlaskaX.Dmytro.Adapter.Octo_Travel.DTOs.Products;
 
 using Microsoft.AspNetCore.Mvc;
 

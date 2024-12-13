@@ -2,14 +2,14 @@
 
 using System.Runtime.Serialization;
 
-namespace AlaskaX.Dmytro.Octo_Travel.DTOs.Products
+namespace AlaskaX.Dmytro.Adapter.Octo_Travel.DTOs.Products
 {
     [Serializable]
     [DataContract]
     public class DTOUnit
     {
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public Guid Id { get; set; }
 
         [JsonProperty("internalName")]
         public string InternalName { get; set; }
@@ -21,10 +21,10 @@ namespace AlaskaX.Dmytro.Octo_Travel.DTOs.Products
         public string Type { get; set; }
 
         [JsonProperty("requiredContactFields")]
-        public List<string> RequiredContactFields { get; set; }
+        public List<string> RequiredContactFields { get; set; } = [];
 
         [JsonProperty("restrictions")]
-        public DTORestrictions Restrictions { get; set; }
+        public DTORestrictions Restrictions { get; set; } = new();
     }
 
 }

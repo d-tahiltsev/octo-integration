@@ -8,7 +8,7 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <DocumentationFile>.\AlaskaX.Dmytro.RestAPI.xml</DocumentationFile>
     <Title>Octo Travel Rest API</Title>
-    <Authors>Dmytro</Authors>
+    <Authors>Dmytro Tahiltsev</Authors>
     <Company>AlaskaX</Company>
     <Product>Octo Travel Rest API</Product>
   </PropertyGroup>
@@ -18,12 +18,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+    <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="7.2.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AlaskaX.Dmytro.Octo-Travel\AlaskaX.Dmytro.Octo-Travel.csproj" />
+    <ProjectReference Include="..\AlaskaX.Dmytro.Adapter.Octo-Travel\AlaskaX.Dmytro.Adapter.Octo-Travel.csproj" />
+    <ProjectReference Include="..\AlaskaX.Dmytro.Infrastructure.IoC\AlaskaX.Dmytro.Infrastructure.IoC.csproj" />
   </ItemGroup>
 
   <ItemGroup>

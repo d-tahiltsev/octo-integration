@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AlaskaX.Dmytro.Octo_Travel {
+namespace AlaskaX.Dmytro.Adapter.Octo_Travel {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace AlaskaX.Dmytro.Octo_Travel {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlaskaX.Dmytro.Octo_Travel.OctoTravel", typeof(OctoTravel).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlaskaX.Dmytro.Adapter.Octo_Travel.OctoTravel", typeof(OctoTravel).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

@@ -2,7 +2,7 @@
 
 using System.Runtime.Serialization;
 
-namespace AlaskaX.Dmytro.Octo_Travel.DTOs.Products
+namespace AlaskaX.Dmytro.Adapter.Octo_Travel.DTOs.Products
 {
     [Serializable]
     [DataContract]
@@ -10,7 +10,7 @@ namespace AlaskaX.Dmytro.Octo_Travel.DTOs.Products
     {
         [DataMember]
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public Guid Id { get; set; }
 
         [DataMember]
         [JsonProperty("default")]
@@ -26,7 +26,7 @@ namespace AlaskaX.Dmytro.Octo_Travel.DTOs.Products
 
         [DataMember]
         [JsonProperty("availabilityLocalStartTimes")]
-        public List<string> AvailabilityLocalStartTimes { get; set; }
+        public List<string> AvailabilityLocalStartTimes { get; set; } = [];
 
         [DataMember]
         [JsonProperty("cancellationCutoff")]
@@ -42,14 +42,14 @@ namespace AlaskaX.Dmytro.Octo_Travel.DTOs.Products
 
         [DataMember]
         [JsonProperty("requiredContactFields")]
-        public List<string> RequiredContactFields { get; set; }
+        public List<string> RequiredContactFields { get; set; } = [];
 
         [DataMember]
         [JsonProperty("restrictions")]
-        public DTORestrictions Restrictions { get; set; }
+        public DTORestrictions Restrictions { get; set; } = new();
 
         [DataMember]
         [JsonProperty("units")]
-        public List<DTOUnit> Units { get; set; }
+        public List<DTOUnit> Units { get; set; } = [];
     }
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AlaskaX.Dmytro.RestAPI</name>
+    </assembly>
+    <members>
+        <member name="T:AlaskaX.Dmytro.RestAPI.Controllers.ProductsController">
+            <summary>
+            API controller responsible for integrating with the Octo Travel Api to retrieve products.
+            </summary>
+        </member>
+        <member name="M:AlaskaX.Dmytro.RestAPI.Controllers.ProductsController.#ctor(Microsoft.Extensions.Logging.ILogger{AlaskaX.Dmytro.RestAPI.Controllers.ProductsController},AlaskaX.Dmytro.Adapter.Octo_Travel.IOctoTravelApi)">
+            <summary>
+            API controller responsible for integrating with the Octo Travel Api to retrieve products.
+            </summary>
+        </member>
+        <member name="M:AlaskaX.Dmytro.RestAPI.Controllers.ProductsController.GetProductsAsync">
+            <summary>
+            Gets a list of products from the Octo Travel API.
+            </summary>
+            <returns>A list of products in the form of DTOProduct objects</returns>
+            <response code="200">Returns a list of products</response>
+            <response code="400">If there is a bad request or error while fetching products</response>
+            <response code="404">If no products are found</response>
+        </member>
+    </members>
+</doc>

@@ -7,7 +7,20 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlaskaX.Dmytro.RestAPI", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlaskaX.Dmytro.Tests", "AlaskaX.Dmytro.Tests\AlaskaX.Dmytro.Tests.csproj", "{C7BBD5F1-2FA9-4094-ADB9-2D54540E4B12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlaskaX.Dmytro.Octo-Travel", "AlaskaX.Dmytro.Octo-Travel\AlaskaX.Dmytro.Octo-Travel.csproj", "{B067B728-AB3C-4B17-992A-F84B9F84E012}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlaskaX.Dmytro.Adapter.Octo-Travel", "AlaskaX.Dmytro.Adapter.Octo-Travel\AlaskaX.Dmytro.Adapter.Octo-Travel.csproj", "{B067B728-AB3C-4B17-992A-F84B9F84E012}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlaskaX.Dmytro.Domain", "AlaskaX.Dmytro.Domain\AlaskaX.Dmytro.Domain.csproj", "{636CCB32-5F2C-456C-8911-F393FA3FECEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlaskaX.Dmytro.Infrastructure.Data", "AlaskaX.Dmytro.Infrastructure.Data\AlaskaX.Dmytro.Infrastructure.Data.csproj", "{2B9994FC-E8DD-4D58-B603-93AA3737F52D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlaskaX.Dmytro.Application", "AlaskaX.Dmytro.Application\AlaskaX.Dmytro.Application.csproj", "{D640B6AF-6D53-4207-87ED-95F7076E498C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlaskaX.Dmytro.Infrastructure.IoC", "AlaskaX.Dmytro.Infrastructure.IoC\AlaskaX.Dmytro.Infrastructure.IoC.csproj", "{15544D71-6272-40C4-A451-F97CFC5AD598}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E482238D-A5D5-4631-B6DF-17A3F299662A}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +40,22 @@ Global
 		{B067B728-AB3C-4B17-992A-F84B9F84E012}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B067B728-AB3C-4B17-992A-F84B9F84E012}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B067B728-AB3C-4B17-992A-F84B9F84E012}.Release|Any CPU.Build.0 = Release|Any CPU
+		{636CCB32-5F2C-456C-8911-F393FA3FECEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{636CCB32-5F2C-456C-8911-F393FA3FECEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{636CCB32-5F2C-456C-8911-F393FA3FECEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{636CCB32-5F2C-456C-8911-F393FA3FECEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B9994FC-E8DD-4D58-B603-93AA3737F52D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B9994FC-E8DD-4D58-B603-93AA3737F52D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B9994FC-E8DD-4D58-B603-93AA3737F52D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B9994FC-E8DD-4D58-B603-93AA3737F52D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D640B6AF-6D53-4207-87ED-95F7076E498C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D640B6AF-6D53-4207-87ED-95F7076E498C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D640B6AF-6D53-4207-87ED-95F7076E498C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D640B6AF-6D53-4207-87ED-95F7076E498C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15544D71-6272-40C4-A451-F97CFC5AD598}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15544D71-6272-40C4-A451-F97CFC5AD598}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15544D71-6272-40C4-A451-F97CFC5AD598}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15544D71-6272-40C4-A451-F97CFC5AD598}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

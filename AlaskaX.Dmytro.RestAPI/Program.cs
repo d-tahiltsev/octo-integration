@@ -1,4 +1,6 @@
-using AlaskaX.Dmytro.Octo_Travel;
+using AlaskaX.Dmytro.Infrastructure.IoC;
+
+using Microsoft.Extensions.PlatformAbstractions;
 
 using Swashbuckle.AspNetCore.SwaggerUI;
 
@@ -7,14 +9,18 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"{PlatformServices.Default.Application.ApplicationName}.xml"));
+    c.EnableAnnotations();
+});
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddHealthChecks();
 builder.Services.AddResponseCompression();
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddScoped<IOctoTravelApi, OctoTravelApi>();
+NativeInjectorBootStrapper.ResolveAdapters(builder.Services);
 
 var app = builder.Build();
 

@@ -1,6 +1,8 @@
 using AlaskaX.Dmytro.Infrastructure.IoC;
+using AlaskaX.Dmytro.RestAPI.Configurations;
 
 using Microsoft.Extensions.PlatformAbstractions;
+using Microsoft.OpenApi.Models;
 
 using Swashbuckle.AspNetCore.SwaggerUI;
 
@@ -11,15 +13,39 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
+    c.AddSecurityDefinition("Authorization", new OpenApiSecurityScheme
+    {
+        In = ParameterLocation.Header,
+        Description = @"Please enter Authorization Token into field.",
+        Name = "Authorization",
+        BearerFormat = "JWT",
+        Scheme = "bearer",
+        Type = SecuritySchemeType.Http
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Authorization" }
+            },
+            [ "Authorization" ]
+        }
+    });
+
     c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"{PlatformServices.Default.Application.ApplicationName}.xml"));
     c.EnableAnnotations();
 });
 
+builder.Services.AddJwtAuthenticationConfig();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddHealthChecks();
 builder.Services.AddResponseCompression();
 builder.Services.AddEndpointsApiExplorer();
 
+//NativeInjectorBootStrapper.ResolveRepositories(builder.Services);
+NativeInjectorBootStrapper.ResolveServices(builder.Services);
 NativeInjectorBootStrapper.ResolveAdapters(builder.Services);
 
 var app = builder.Build();

@@ -1,4 +1,8 @@
 ﻿using AlaskaX.Dmytro.Adapter.Octo_Travel;
+using AlaskaX.Dmytro.Application.Services;
+using AlaskaX.Dmytro.Domain.Interfaces.Repositories;
+using AlaskaX.Dmytro.Domain.Interfaces.Services;
+using AlaskaX.Dmytro.Infrastructure.Data.Repositories;
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,10 +24,13 @@ namespace AlaskaX.Dmytro.Infrastructure.IoC
 
         public static void ResolveRepositories(IServiceCollection services)
         {
+            services.AddScoped<IProductRepository, ProductRepository>();
         }
 
         public static void ResolveServices(IServiceCollection services)
         {
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<IProductService, ProductService>();
         }
 
         public static void ResolveAdapters(IServiceCollection services)

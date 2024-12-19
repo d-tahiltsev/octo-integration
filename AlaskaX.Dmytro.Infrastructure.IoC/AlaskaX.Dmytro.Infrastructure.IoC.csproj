@@ -13,6 +13,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AlaskaX.Dmytro.Adapter.Octo-Travel\AlaskaX.Dmytro.Adapter.Octo-Travel.csproj" />
+    <ProjectReference Include="..\AlaskaX.Dmytro.Application\AlaskaX.Dmytro.Application.csproj" />
+    <ProjectReference Include="..\AlaskaX.Dmytro.Infrastructure.Data\AlaskaX.Dmytro.Infrastructure.Data.csproj" />
   </ItemGroup>
 
 </Project>

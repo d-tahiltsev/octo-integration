@@ -1,6 +1,7 @@
-using AlaskaX.Dmytro.Adapter.Octo_Travel;
-using AlaskaX.Dmytro.Adapter.Octo_Travel.DTOs.Products;
+using AlaskaX.Dmytro.Domain.DTOs.Products;
+using AlaskaX.Dmytro.Domain.Interfaces.Services;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using Swashbuckle.AspNetCore.Annotations;
@@ -12,31 +13,161 @@ namespace AlaskaX.Dmytro.RestAPI.Controllers
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
-    [SwaggerTag("Octo Travel Products Integration Controller")]
-    public class ProductsController(ILogger<ProductsController> logger, IOctoTravelApi octoTravel) : ControllerBase
+    [SwaggerTag("Local products Controller for Octo Travel integration")]
+    [Authorize]
+    public class ProductsController(ILogger<ProductsController> logger, IProductService productService) : ControllerBase
     {
         /// <summary>
-        /// Gets a list of products from the Octo Travel API.
+        /// Gets a product from database by Id
         /// </summary>
-        /// <returns>A list of products in the form of DTOProduct objects</returns>
+        /// <returns>DTO Product Response</returns>
         /// <response code="200">Returns a list of products</response>
-        /// <response code="400">If there is a bad request or error while fetching products</response>
+        /// <response code="400">If there is a bad request or error while finding a product by Id</response>
         /// <response code="404">If no products are found</response>
-        [HttpGet("", Name = nameof(GetProductsAsync))]
+        [HttpGet("{aId:guid}", Name = nameof(GetProductAsync))]
         [HttpHead]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(IEnumerable<DTOProduct>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(DTOProductResponse), StatusCodes.Status200OK)]
         [Produces("application/problem+json")]
-        public async Task<ActionResult<IEnumerable<DTOProduct>>> GetProductsAsync()
+        public async Task<ActionResult<DTOProductResponse>> GetProductAsync([FromRoute] Guid aId)
         {
             try
             {
-                return Ok(await octoTravel.GetProductsAsync());
+                DTOProductResponse dto = await productService.LoadAsync(aId);
+
+                if (dto == null)
+                    return NotFound();
+
+                return Ok(dto);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Error occurred while retrieving a product.");
+
+                return BadRequest(new ProblemDetails
+                {
+                    Status = StatusCodes.Status400BadRequest,
+                    Title = "Bad Request",
+                    Detail = ex.Message
+                });
+            }
+        }
+
+        /// <summary>
+        /// Gets all products from database
+        /// </summary>
+        /// <returns>A list of products DTO Response</returns>
+        /// <response code="200">Returns a list of products</response>
+        /// <response code="400">If there is a bad request or error while fetching products</response>
+        [HttpGet("", Name = nameof(GetProductsAsync))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(IEnumerable<DTOProductResponse>), StatusCodes.Status200OK)]
+        [Produces("application/problem+json")]
+        public async Task<ActionResult<IEnumerable<DTOProductResponse>>> GetProductsAsync()
+        {
+            try
+            {
+                return Ok(await productService.ListAsync());
             }
             catch (Exception ex)
             {
                 logger.LogError(ex, "Error occurred while retrieving products.");
+
+                return BadRequest(new ProblemDetails
+                {
+                    Status = StatusCodes.Status400BadRequest,
+                    Title = "Bad Request",
+                    Detail = ex.Message
+                });
+            }
+        }
+
+        /// <summary>
+        /// Creates a product in database
+        /// </summary>
+        /// <returns>Product created</returns>
+        /// <response code="200">Created product</response>
+        /// <response code="400">Error occurred while creating a product</response>
+        [HttpPost("", Name = nameof(PostProductsAsync))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(DTOProductResponse), StatusCodes.Status200OK)]
+        [Produces("application/problem+json")]
+        [Consumes("application/json")]
+        public async Task<ActionResult<DTOProductResponse>> PostProductsAsync([FromBody] DTOProductInsert aDtoInsert)
+        {
+            try
+            {
+                DTOProductResponse dto = await productService.CreateAsync(aDtoInsert);
+                return CreatedAtRoute(nameof(GetProductAsync), new
+                {
+                    aId = dto.Id
+                }, dto);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Error occurred while creating a product.");
+
+                return BadRequest(new ProblemDetails
+                {
+                    Status = StatusCodes.Status400BadRequest,
+                    Title = "Bad Request",
+                    Detail = ex.Message
+                });
+            }
+        }
+
+        /// <summary>
+        /// Update product information
+        /// </summary>
+        /// <returns>DTO Product Response</returns>
+        /// <response code="200">Returns updated product</response>
+        /// <response code="400">Error occurred while updating a product</response>
+        [HttpPut("{aId:guid}", Name = nameof(PutProductsAsync))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(DTOProductResponse), StatusCodes.Status200OK)]
+        [Produces("application/problem+json")]
+        [Consumes("application/json")]
+        public async Task<ActionResult<DTOProductResponse>> PutProductsAsync([FromRoute] Guid aId, [FromBody] DTOProductUpdate aDtoUpdate)
+        {
+            try
+            {
+                DTOProductResponse dto = await productService.UpdateAsync(aDtoUpdate.SetId(aId));
+                return Ok(dto);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Error occurred while updating a product.");
+
+                return BadRequest(new ProblemDetails
+                {
+                    Status = StatusCodes.Status400BadRequest,
+                    Title = "Bad Request",
+                    Detail = ex.Message
+                });
+            }
+        }
+
+        /// <summary>
+        /// Deletes a product by Id.
+        /// </summary>
+        /// <param name="aId">Product Id.</param>
+        /// <returns>Deletion confirmation.</returns>
+        [HttpDelete("{aId:guid}", Name = nameof(DeleteProductAsync))]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<ActionResult> DeleteProductAsync([FromRoute] Guid aId)
+        {
+            try
+            {
+                await productService.DeleteAsync(aId);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Error occurred while deleting a product.");
 
                 return BadRequest(new ProblemDetails
                 {

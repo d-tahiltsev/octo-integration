@@ -4,17 +4,44 @@
         <name>AlaskaX.Dmytro.RestAPI</name>
     </assembly>
     <members>
-        <member name="T:AlaskaX.Dmytro.RestAPI.Controllers.ProductsController">
+        <member name="M:AlaskaX.Dmytro.RestAPI.Configurations.JwtAuthenticationConfig.AddJwtAuthenticationConfig(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            JWT Auth service configuration
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="T:AlaskaX.Dmytro.RestAPI.Controllers.AuthenticationController">
             <summary>
             API controller responsible for integrating with the Octo Travel Api to retrieve products.
             </summary>
         </member>
-        <member name="M:AlaskaX.Dmytro.RestAPI.Controllers.ProductsController.#ctor(Microsoft.Extensions.Logging.ILogger{AlaskaX.Dmytro.RestAPI.Controllers.ProductsController},AlaskaX.Dmytro.Adapter.Octo_Travel.IOctoTravelApi)">
+        <member name="M:AlaskaX.Dmytro.RestAPI.Controllers.AuthenticationController.#ctor(Microsoft.Extensions.Logging.ILogger{AlaskaX.Dmytro.RestAPI.Controllers.AuthenticationController},AlaskaX.Dmytro.Domain.Interfaces.Services.IAuthenticationService)">
             <summary>
             API controller responsible for integrating with the Octo Travel Api to retrieve products.
             </summary>
         </member>
-        <member name="M:AlaskaX.Dmytro.RestAPI.Controllers.ProductsController.GetProductsAsync">
+        <member name="M:AlaskaX.Dmytro.RestAPI.Controllers.AuthenticationController.GetAuthentication(System.String)">
+            <summary>
+            Method available provide API authentication using provided Credential.
+            </summary>
+            <remarks>Place your credential hash on this request header.</remarks>
+            <param name="credentials">Credentials Token</param>
+            <response code="400">Bad request: Invalid token</response>
+            <response code="401">Unauthorized</response>
+            <response code="200">Ok</response>
+        </member>
+        <member name="T:AlaskaX.Dmytro.RestAPI.Controllers.OctoTravelsController">
+            <summary>
+            API controller responsible for integrating with the Octo Travel Api to retrieve products.
+            </summary>
+        </member>
+        <member name="M:AlaskaX.Dmytro.RestAPI.Controllers.OctoTravelsController.#ctor(Microsoft.Extensions.Logging.ILogger{AlaskaX.Dmytro.RestAPI.Controllers.ProductsController},AlaskaX.Dmytro.Adapter.Octo_Travel.IOctoTravelApi)">
+            <summary>
+            API controller responsible for integrating with the Octo Travel Api to retrieve products.
+            </summary>
+        </member>
+        <member name="M:AlaskaX.Dmytro.RestAPI.Controllers.OctoTravelsController.GetOctoTravelProductsAsync">
             <summary>
             Gets a list of products from the Octo Travel API.
             </summary>
@@ -22,6 +49,56 @@
             <response code="200">Returns a list of products</response>
             <response code="400">If there is a bad request or error while fetching products</response>
             <response code="404">If no products are found</response>
+        </member>
+        <member name="T:AlaskaX.Dmytro.RestAPI.Controllers.ProductsController">
+            <summary>
+            API controller responsible for integrating with the Octo Travel Api to retrieve products.
+            </summary>
+        </member>
+        <member name="M:AlaskaX.Dmytro.RestAPI.Controllers.ProductsController.#ctor(Microsoft.Extensions.Logging.ILogger{AlaskaX.Dmytro.RestAPI.Controllers.ProductsController},AlaskaX.Dmytro.Domain.Interfaces.Services.IProductService)">
+            <summary>
+            API controller responsible for integrating with the Octo Travel Api to retrieve products.
+            </summary>
+        </member>
+        <member name="M:AlaskaX.Dmytro.RestAPI.Controllers.ProductsController.GetProductAsync(System.Guid)">
+            <summary>
+            Gets a product from database by Id
+            </summary>
+            <returns>DTO Product Response</returns>
+            <response code="200">Returns a list of products</response>
+            <response code="400">If there is a bad request or error while finding a product by Id</response>
+            <response code="404">If no products are found</response>
+        </member>
+        <member name="M:AlaskaX.Dmytro.RestAPI.Controllers.ProductsController.GetProductsAsync">
+            <summary>
+            Gets all products from database
+            </summary>
+            <returns>A list of products DTO Response</returns>
+            <response code="200">Returns a list of products</response>
+            <response code="400">If there is a bad request or error while fetching products</response>
+        </member>
+        <member name="M:AlaskaX.Dmytro.RestAPI.Controllers.ProductsController.PostProductsAsync(AlaskaX.Dmytro.Domain.DTOs.Products.DTOProductInsert)">
+            <summary>
+            Creates a product in database
+            </summary>
+            <returns>Product created</returns>
+            <response code="200">Created product</response>
+            <response code="400">Error occurred while creating a product</response>
+        </member>
+        <member name="M:AlaskaX.Dmytro.RestAPI.Controllers.ProductsController.PutProductsAsync(System.Guid,AlaskaX.Dmytro.Domain.DTOs.Products.DTOProductUpdate)">
+            <summary>
+            Update product information
+            </summary>
+            <returns>DTO Product Response</returns>
+            <response code="200">Returns updated product</response>
+            <response code="400">Error occurred while updating a product</response>
+        </member>
+        <member name="M:AlaskaX.Dmytro.RestAPI.Controllers.ProductsController.DeleteProductAsync(System.Guid)">
+            <summary>
+            Deletes a product by Id.
+            </summary>
+            <param name="aId">Product Id.</param>
+            <returns>Deletion confirmation.</returns>
         </member>
     </members>
 </doc>

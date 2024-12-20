@@ -100,5 +100,25 @@
             <param name="aId">Product Id.</param>
             <returns>Deletion confirmation.</returns>
         </member>
+        <member name="T:AlaskaX.Dmytro.RestAPI.Controllers.SupplierController">
+            <summary>
+            API controller responsible for integrating with the Octo Travel Api to retrieve products.
+            </summary>
+        </member>
+        <member name="M:AlaskaX.Dmytro.RestAPI.Controllers.SupplierController.#ctor(Microsoft.Extensions.Logging.ILogger{AlaskaX.Dmytro.RestAPI.Controllers.ProductsController},AlaskaX.Dmytro.Domain.Interfaces.Services.ISupplierService)">
+            <summary>
+            API controller responsible for integrating with the Octo Travel Api to retrieve products.
+            </summary>
+        </member>
+        <member name="M:AlaskaX.Dmytro.RestAPI.Controllers.SupplierController.GetSupplierAsync">
+            <summary>
+            Gets Supplier information from Mock data to provide Octo Validation tool proper info
+            </summary>
+            <returns>DTO Supplier Response</returns>
+            <response code="200">Returns supplier info</response>
+            <response code="400">If there is a bad request or error while finding a product by Id</response>
+            <response code="404">If no supplier are found</response>
+            <response code="401">If JWT is not valid</response>
+        </member>
     </members>
 </doc>

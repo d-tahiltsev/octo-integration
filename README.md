@@ -52,6 +52,11 @@ This layer includes controllers and instance configurations for the API, in this
 
 ``` dotnet run --project .\AlaskaX.Dmytro.RestAPI ```
 
+3. To allow access to the localhost from the web, use a tunnel. ([See more...](https://dev.to/jagkush/a-quick-way-to-access-your-local-server-on-the-internet-4kei))
+
+``` ssh -R 80:localhost:8080 ssh.localhost.run ```
+
+
 ---
 
 ## About

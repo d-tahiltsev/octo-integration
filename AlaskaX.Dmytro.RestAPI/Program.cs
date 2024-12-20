@@ -68,6 +68,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseHsts();
 
 app.UseDefaultFiles();
 app.UseStaticFiles();

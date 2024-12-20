@@ -30,6 +30,7 @@ namespace AlaskaX.Dmytro.Infrastructure.IoC
         public static void ResolveServices(IServiceCollection services)
         {
             services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<ISupplierService, SupplierService>();
             services.AddScoped<IProductService, ProductService>();
         }
 

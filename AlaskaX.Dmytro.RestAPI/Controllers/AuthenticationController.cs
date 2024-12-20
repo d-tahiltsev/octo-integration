@@ -20,7 +20,9 @@ namespace AlaskaX.Dmytro.RestAPI.Controllers
         /// <summary>
         /// Method available provide API authentication using provided Credential.
         /// </summary>
-        /// <remarks>Place your credential hash on this request header.</remarks>
+        /// <remarks>
+        /// Place your credential hash on this request header.
+        /// Use any string because it's a test API. Any non-blank string should authorizer you. :)</remarks>
         /// <param name="credentials">Credentials Token</param>
         /// <response code="400">Bad request: Invalid token</response>
         /// <response code="401">Unauthorized</response>

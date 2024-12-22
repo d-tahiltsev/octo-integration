@@ -8,9 +8,17 @@ using Swashbuckle.AspNetCore.SwaggerUI;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddControllersConfig();
 
-builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddCors(
+                    options => options.AddPolicy("AllowAll",
+                                                    p => p.AllowAnyOrigin()
+                                                        .AllowAnyMethod()
+                                                        .AllowAnyHeader())
+                );
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.AddSecurityDefinition("Authorization", new OpenApiSecurityScheme
@@ -67,6 +75,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseCors("AllowAll");
 app.UseHttpsRedirection();
 app.UseHsts();
 

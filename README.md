@@ -52,10 +52,10 @@ This layer includes controllers and instance configurations for the API, in this
 
 ``` dotnet run --project .\AlaskaX.Dmytro.RestAPI ```
 
-3. To allow access to the localhost from the web, use a tunnel. ([See more...](https://dev.to/jagkush/a-quick-way-to-access-your-local-server-on-the-internet-4kei))
+3. To allow access to localhost from the web and https://validator.octo.travel/supplier works as expected, use ngrok and setup. ([See more...](https://ngrok.com/))
 
-``` ssh -R 80:localhost:8080 ssh.localhost.run ```
-
+``` ngrok config add-authtoken XXXXXXX<YOUR_NGROK_TOKEN>XXXXXX ```
+``` ngrok http https://localhost:8081 ```
 
 ---
 

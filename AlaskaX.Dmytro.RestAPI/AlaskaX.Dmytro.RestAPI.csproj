@@ -11,6 +11,8 @@
     <Authors>Dmytro Tahiltsev</Authors>
     <Company>AlaskaX</Company>
     <Product>Octo Travel Rest API</Product>
+    <RepositoryUrl>https://github.com/d-tahiltsev/octo-integration</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>

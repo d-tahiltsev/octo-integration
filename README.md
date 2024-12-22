@@ -4,6 +4,7 @@
 **Welcome to the Octo Travel Integration API**
 
 This repository showcases a small demonstration of the benefits of hexagonal architecture for project setup and its associated advantages.
+[See more](https://github.com/d-tahiltsev/octo-integration)
 
 ---
 

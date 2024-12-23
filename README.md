@@ -56,6 +56,7 @@ This layer includes controllers and instance configurations for the API, in this
 3. To allow access to localhost from the web and https://validator.octo.travel/supplier works as expected, use ngrok and setup. ([See more...](https://ngrok.com/))
 
 ``` ngrok config add-authtoken XXXXXXX<YOUR_NGROK_TOKEN>XXXXXX ```
+
 ``` ngrok http https://localhost:8081 ```
 
 ---

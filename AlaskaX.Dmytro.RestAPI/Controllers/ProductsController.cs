@@ -1,4 +1,5 @@
 using AlaskaX.Dmytro.Domain.DTOs.Products;
+using AlaskaX.Dmytro.Domain.DTOs.Products.Octos;
 using AlaskaX.Dmytro.Domain.Interfaces.Services;
 
 using Microsoft.AspNetCore.Authorization;
@@ -18,6 +19,44 @@ namespace AlaskaX.Dmytro.RestAPI.Controllers
     public class ProductsController(ILogger<ProductsController> logger, IProductService productService) : ControllerBase
     {
         /// <summary>
+        /// Gets Products information from Mock data to provide Octo Validation tool proper info
+        /// </summary>
+        /// <returns>DTO OctoProducts Response</returns>
+        /// <response code="200">Returns products info</response>
+        /// <response code="404">If no products are found</response>
+        /// <response code="401">If JWT is not valid</response>
+        [HttpGet("~/octo/products", Name = nameof(GetOctoProductsAsync))]
+        [HttpHead]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(IEnumerable<DTOOctoProductResponse>), StatusCodes.Status200OK)]
+        [Produces("application/json")]
+        public async Task<ActionResult<IEnumerable<DTOOctoProductResponse>>> GetOctoProductsAsync()
+        {
+            try
+            {
+                IEnumerable<DTOOctoProductResponse> dtos = DTOOctoProductResponse.GetSamples();
+
+                if (dtos == null)
+                    return NotFound();
+
+                return Ok(dtos);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Error occurred while retrieving supplier info.");
+
+                return BadRequest(new ProblemDetails
+                {
+                    Status = StatusCodes.Status400BadRequest,
+                    Title = "Bad Request",
+                    Detail = ex.Message
+                });
+            }
+        }
+
+        /// <summary>
         /// Gets a product from database by Id
         /// </summary>
         /// <returns>DTO Product Response</returns>
@@ -25,7 +64,6 @@ namespace AlaskaX.Dmytro.RestAPI.Controllers
         /// <response code="400">If there is a bad request or error while finding a product by Id</response>
         /// <response code="404">If no products are found</response>
         [HttpGet("{aId:guid}", Name = nameof(GetProductAsync))]
-        [HttpHead]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(DTOProductResponse), StatusCodes.Status200OK)]

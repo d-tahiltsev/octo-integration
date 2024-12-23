@@ -22,7 +22,6 @@ namespace AlaskaX.Dmytro.RestAPI.Controllers
         /// </summary>
         /// <returns>DTO Supplier Response</returns>
         /// <response code="200">Returns supplier info</response>
-        /// <response code="400">If there is a bad request or error while finding a product by Id</response>
         /// <response code="404">If no supplier are found</response>
         /// <response code="401">If JWT is not valid</response>
         [HttpGet("", Name = nameof(GetSupplierAsync))]

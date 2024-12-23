@@ -49,15 +49,6 @@
             API controller responsible for integrating with the Octo Travel Api to retrieve products.
             </summary>
         </member>
-        <member name="M:AlaskaX.Dmytro.RestAPI.Controllers.OctoTravelsController.GetOctoTravelProductsAsync">
-            <summary>
-            Gets a list of products from the Octo Travel API.
-            </summary>
-            <returns>A list of products in the form of DTOProduct objects</returns>
-            <response code="200">Returns a list of products</response>
-            <response code="400">If there is a bad request or error while fetching products</response>
-            <response code="404">If no products are found</response>
-        </member>
         <member name="T:AlaskaX.Dmytro.RestAPI.Controllers.ProductsController">
             <summary>
             API controller responsible for integrating with the Octo Travel Api to retrieve products.
@@ -67,6 +58,15 @@
             <summary>
             API controller responsible for integrating with the Octo Travel Api to retrieve products.
             </summary>
+        </member>
+        <member name="M:AlaskaX.Dmytro.RestAPI.Controllers.ProductsController.GetOctoProductsAsync">
+            <summary>
+            Gets Products information from Mock data to provide Octo Validation tool proper info
+            </summary>
+            <returns>DTO OctoProducts Response</returns>
+            <response code="200">Returns products info</response>
+            <response code="404">If no products are found</response>
+            <response code="401">If JWT is not valid</response>
         </member>
         <member name="M:AlaskaX.Dmytro.RestAPI.Controllers.ProductsController.GetProductAsync(System.Guid)">
             <summary>
@@ -124,7 +124,6 @@
             </summary>
             <returns>DTO Supplier Response</returns>
             <response code="200">Returns supplier info</response>
-            <response code="400">If there is a bad request or error while finding a product by Id</response>
             <response code="404">If no supplier are found</response>
             <response code="401">If JWT is not valid</response>
         </member>
